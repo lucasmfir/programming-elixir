@@ -33,3 +33,29 @@ defmodule Arithmetic do
   def gcd(x, 0), do: x
   def gcd(x, y), do: gcd(y, rem(x, y))
 end
+
+# 6
+# The most efficient way to find the number is to guess halfway between the low and high numbers of the range.
+# If our guess is too big, then the answer lies between the bottom of the range and one less than our guess.
+# If our guess is too small, then the answer lies between one more than our guess and the end of the range.
+
+defmodule Chop do
+  def guess(n, range = low..high) do
+    g = div(low + high, 2)
+    IO.puts("Is it #{g}")
+
+    guess(n, g, range)
+  end
+
+  def guess(n, g, _low..high) when g < n do
+    guess(n, (g + 1)..high)
+  end
+
+  def guess(n, g, low.._high) when g > n do
+    guess(n, low..(g - 1))
+  end
+
+  def guess(n, n, _) do
+    IO.puts("Its #{n}")
+  end
+end
