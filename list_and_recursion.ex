@@ -16,6 +16,9 @@
 # ​ 	​iex>​ MyList.caesar(​'ryvkve'​, 13)
 # ​ 	?????? :)
 
+# 4
+# Write a function MyList.span(from, to) that returns a list of the numbers from from up to to.
+
 defmodule MyList do
   def mapsum([], _func), do: 0
 
@@ -32,4 +35,11 @@ defmodule MyList do
   end
 
   def caesar([head | tail], n), do: [head + n - 26 | caesar(tail, n)]
+
+  # book solution for 4
+  # def span(from, to) when from > to, do: []
+
+  def span(to, to), do: [to]
+
+  def span(from, to), do: [from | span(from + 1, to)]
 end
